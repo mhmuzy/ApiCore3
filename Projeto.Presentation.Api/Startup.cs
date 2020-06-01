@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 
 namespace Projeto.Presentation.Api
 {
@@ -26,6 +27,28 @@ namespace Projeto.Presentation.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            #region Swagger
+
+            //configurando a documentação da API gerada pelo Swagger
+            services.AddSwaggerGen(s =>
+                {
+                    s.SwaggerDoc("v1",
+                        new OpenApiInfo
+                        {
+                            Title = "Sistema de controle de Clientes",
+                            Version = "v1",
+                            Description = "Projeto desenvolvido em NET CORE 3 API com EntityFramework",
+                            Contact = new OpenApiContact
+                            {
+                                Name = "COTI Infromática - Curso de C# WebDeveloper",
+                                Url = new Uri("http://www.cotiinformatica.com.br"),
+                                Email = "contato@cotiinformatica.com.br"
+                            }
+                        });
+            });
+
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +69,15 @@ namespace Projeto.Presentation.Api
             {
                 endpoints.MapControllers();
             });
+
+            #region Swagger
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(s =>
+                    { s.SwaggerEndpoint("/swagger/v1/swagger.json", "Aula"); });
+
+            #endregion
         }
     }
 }
