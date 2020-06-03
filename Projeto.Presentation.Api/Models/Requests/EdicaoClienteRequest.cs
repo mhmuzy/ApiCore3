@@ -2,10 +2,27 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
 
 namespace Projeto.Presentation.Api.Models.Requests
 {
     public class EdicaoClienteRequest
     {
+        [Required(ErrorMessage = "Por favor, informe o id do cliente.")]
+        public int IdCliente { get; set; }
+
+        [MinLength(6, ErrorMessage = "Por favor, informe no mínimo {1} caracteres.")]
+        [MaxLength(150, ErrorMessage = "Por favor, informe no máximo {1} caracteres.")]
+        [Required(ErrorMessage = "Por favor, informe o nome do cliente.")]
+        public string Nome { get; set; }
+
+        [EmailAddress(ErrorMessage = "Por favor, informe o endereço de email válido.")]
+        [Required(ErrorMessage = "Por favor, informe o email do cliente.")]
+        public string  Email { get; set; }
+
+        [StringLength(11, ErrorMessage = "Por favor, informe exatamente {1} caracteres.")]
+        [Required(ErrorMessage = "Por favor, informe o cpf do cliente.")]
+        public string Cpf { get; set; }
     }
 }
