@@ -28,5 +28,10 @@ namespace Projeto.Presentation.Api.Repositories
         {
             return clientes.OrderBy(c => c.Nome).ToList();
         }
+
+        public ClienteEntity GetById(int id)
+        {
+            return clientes.FirstOrDefault(c => c.IdCliente == id);
+        }
     }
 }

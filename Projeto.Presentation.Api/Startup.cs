@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Projeto.Presentation.Api.Repositories;
 
 namespace Projeto.Presentation.Api
 {
@@ -47,6 +48,12 @@ namespace Projeto.Presentation.Api
                             }
                         });
             });
+
+            #endregion
+
+            #region
+
+            services.AddSingleton<ClienteRepository>();
 
             #endregion
         }
