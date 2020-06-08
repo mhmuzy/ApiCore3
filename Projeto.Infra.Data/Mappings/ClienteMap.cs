@@ -27,6 +27,11 @@ namespace Projeto.Infra.Data.Mappings
                 .HasColumnName("Cpf")
                 .HasMaxLength(11)
                 .IsRequired();
+
+            builder.Property(c => c.Email)
+                .HasColumnName("Email")
+                .HasMaxLength(100)
+                .IsRequired();
         }
     }
 }
