@@ -32,6 +32,11 @@ namespace Projeto.Infra.Data.Mappings
                 .HasColumnName("Email")
                 .HasMaxLength(100)
                 .IsRequired();
+
+            builder.Property(c => c.DataCriacao)
+                .HasColumnName("DataCriacao")
+                .HasColumnType("date")
+                .IsRequired();
         }
     }
 }
