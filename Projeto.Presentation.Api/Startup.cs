@@ -12,6 +12,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Projeto.Presentation.Api.Repositories;
+using Microsoft.EntityFrameworkCore;
+using Projeto.Infra.Data.Context;
+using Projeto.Infra.Data.Contracts;
+using Projeto.Infra.Data.Repositories;
 
 namespace Projeto.Presentation.Api
 {
@@ -24,7 +28,8 @@ namespace Projeto.Presentation.Api
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        // This method gets called by the runtime. 
+        //Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
@@ -51,9 +56,13 @@ namespace Projeto.Presentation.Api
 
             #endregion
 
-            #region
+            #region Injeção de Dependência
 
-            services.AddSingleton<ClienteRepository>();
+            services.AddDbContext<SqlServerContext>
+                (options => options.UseSqlServer
+                (Configuration.GetConnectionString("Projeto")));
+
+            //services.AddTransient<IClienteRepository, ClienteRepository>();
 
             #endregion
         }
@@ -65,8 +74,6 @@ namespace Projeto.Presentation.Api
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseHttpsRedirection();
 
             app.UseRouting();
 

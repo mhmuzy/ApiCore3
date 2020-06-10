@@ -70,7 +70,7 @@ namespace Projeto.Presentation.Api.Controllers
             {
                 StatusCode = StatusCodes.Status200OK,
                 Message = "Cliente atualizado com sucesso.",
-                Data = entity
+                //Data = entity
             }; 
                 
             return Ok(response);
@@ -94,7 +94,7 @@ namespace Projeto.Presentation.Api.Controllers
             { 
                 StatusCode = StatusCodes.Status200OK,
                 Message = "Cliente excluido com sucesso.",
-                Data = entity
+                //Data = entity
             };
             return Ok(response);
         }
@@ -105,7 +105,7 @@ namespace Projeto.Presentation.Api.Controllers
             var response = new ConsultaClienteResponse
             { 
                 StatusCode = StatusCodes.Status200OK,
-                Data = clienteRepository.GetAll()
+                //Data = clienteRepository.GetAll()
             };
 
             return Ok(response);
